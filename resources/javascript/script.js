@@ -220,9 +220,9 @@ function attachEventListeners(container) {
     copyButtons.forEach(button => {
         button.addEventListener('click', handleCopyText);
     });
-	
-	// ADD THIS LINE:
-    initializeEntryCollapsible();
+    
+    // Initialize entry collapsible - PASS CONTAINER!
+    initializeEntryCollapsible(container);
 }
 
 /**
@@ -488,8 +488,8 @@ function initializeCollapsible() {
 /**
  * Initialize collapsible poem entries
  */
-function initializeEntryCollapsible() {
-    const entryHeaders = document.querySelectorAll('.entry-header.collapsible-entry');
+function initializeEntryCollapsible(container) {
+    const entryHeaders = container.querySelectorAll('.entry-header.collapsible-entry');
     
     entryHeaders.forEach(header => {
         header.addEventListener('click', function(e) {
