@@ -172,13 +172,14 @@ function createEntryHTML(poetKey, entry) {
     
     return `
         <div class="content-entry" data-folder="${entry.folder}">
-            <div class="entry-header">
-                <div class="entry-date">${formattedDate}</div>
-                <h3 class="entry-title">${escapeHtml(entry.title)}</h3>
-                <div class="entry-poet">${escapeHtml(entry.poet)}</div>
+            <div class="entry-header collapsible-entry">
+                <span class="entry-arrow">▶</span>
+                <span class="entry-date">${formattedDate}</span>
+                <span class="entry-separator"> - </span>
+                <span class="entry-title">${escapeHtml(entry.title)}</span>
             </div>
             
-            <div class="entry-content">
+            <div class="entry-content collapsed-entry">
                 <div class="audio-player">
                     <audio controls preload="metadata">
                         <source src="${audioPath}" type="audio/mpeg">
@@ -219,6 +220,9 @@ function attachEventListeners(container) {
     copyButtons.forEach(button => {
         button.addEventListener('click', handleCopyText);
     });
+	
+	// ADD THIS LINE:
+    initializeEntryCollapsible();
 }
 
 /**
@@ -476,6 +480,27 @@ function initializeCollapsible() {
             // Toggle collapsed class
             if (contentList && contentList.classList.contains('content-list')) {
                 contentList.classList.toggle('collapsed');
+            }
+        });
+    });
+}
+
+/**
+ * Initialize collapsible poem entries
+ */
+function initializeEntryCollapsible() {
+    const entryHeaders = document.querySelectorAll('.entry-header.collapsible-entry');
+    
+    entryHeaders.forEach(header => {
+        header.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            this.classList.toggle('active');
+            
+            const entryContent = this.nextElementSibling;
+            
+            if (entryContent && entryContent.classList.contains('entry-content')) {
+                entryContent.classList.toggle('collapsed-entry');
             }
         });
     });
