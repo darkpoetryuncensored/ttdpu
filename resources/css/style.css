@@ -369,11 +369,20 @@ header .title {
     color: var(--color-bone);
 }
 
+/* Arrow indicator for poet section headers
+   Creates a triangle using CSS borders instead of Unicode characters
+   This avoids emoji rendering issues on different devices */
 .poet-name .arrow {
     display: inline-block;
+    width: 0;  /* No actual width */
+    height: 0; /* No actual height */
+    /* CSS trick: borders with transparent top/bottom create a triangle shape */
+    border-top: 6px solid transparent;    /* Invisible top border */
+    border-bottom: 6px solid transparent; /* Invisible bottom border */
+    border-left: 8px solid var(--color-crimson); /* Visible left border = triangle pointing right */
     margin-left: 1rem;
-    font-size: 1rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; /* Smooth rotation animation */
+    vertical-align: middle; /* Align with text */
 }
 
 .poet-name.collapsible.active .arrow {
@@ -473,11 +482,19 @@ header .title {
     background: var(--color-blood);
 }
 
+/* Arrow indicator for individual poem entries
+   Smaller triangle than poet arrows, same technique */
 .entry-arrow {
     display: inline-block;
-    font-size: 0.75rem;
-    transition: transform 0.3s ease;
-    color: var(--color-crimson);
+    width: 0;  /* No actual width - triangle is made from borders */
+    height: 0; /* No actual height */
+    /* Transparent top/bottom + visible left border = right-pointing triangle */
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 7px solid var(--color-crimson); /* The visible part */
+    transition: transform 0.3s ease; /* Smooth 90° rotation when clicked */
+    flex-shrink: 0; /* Don't let flexbox squish the arrow */
+    margin-right: 0.25rem; /* Small space between arrow and date */
 }
 
 .entry-header.active .entry-arrow {

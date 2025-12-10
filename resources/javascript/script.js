@@ -465,44 +465,85 @@ function escapeHtml(text) {
 
 /**
  * Initialize collapsible sections
+ * Makes poet name headers (Laura L Glover, Georgia Gray, etc.) clickable/touchable
  */
 function initializeCollapsible() {
+    // Find all poet headers that have the 'collapsible' class
     const collapsibleHeaders = document.querySelectorAll('.poet-name.collapsible');
     
+    // Loop through each header and add event listeners
     collapsibleHeaders.forEach(header => {
-        header.addEventListener('click', function() {
-            // Toggle active class on header
+        // Create a toggle function that both click and touch will use
+        // 'this' refers to the element that was clicked/touched
+        const toggleSection = function() {
+            // Toggle the 'active' class on the header (changes arrow direction via CSS)
             this.classList.toggle('active');
             
-            // Find the content list (next sibling element)
+            // Find the next element after the header (the content list)
             const contentList = this.nextElementSibling;
             
-            // Toggle collapsed class
+            // Make sure we found the content list before trying to toggle it
             if (contentList && contentList.classList.contains('content-list')) {
+                // Toggle 'collapsed' class (CSS handles the expand/collapse animation)
                 contentList.classList.toggle('collapsed');
             }
+        };
+        
+        // Desktop: Listen for regular clicks
+        header.addEventListener('click', toggleSection);
+        
+        // Mobile: Listen for touch events
+        // 'touchend' fires when finger lifts off screen
+        header.addEventListener('touchend', function(e) {
+            // Prevent the touch from also triggering a click event (would fire twice)
+            e.preventDefault();
+            // Call our toggle function, making sure 'this' refers to the header
+            toggleSection.call(this);
         });
     });
 }
 
 /**
  * Initialize collapsible poem entries
+ * Makes individual poem headers (date + title) clickable/touchable
+ * @param {HTMLElement} container - The content list div to search within
  */
 function initializeEntryCollapsible(container) {
+    // Find all poem entry headers within this specific container
+    // Using container.querySelectorAll instead of document ensures we only
+    // get entries from the poet section that just loaded
     const entryHeaders = container.querySelectorAll('.entry-header.collapsible-entry');
     
+    // Loop through each poem entry header
     entryHeaders.forEach(header => {
-        header.addEventListener('click', function(e) {
+        // Create a toggle function for both click and touch
+        // The 'e' parameter is the event object (click or touch)
+        const toggleEntry = function(e) {
+            // Stop the event from bubbling up to parent elements
+            // Without this, clicking a poem would also trigger the poet section
             e.stopPropagation();
             
+            // Prevent default browser behavior (important for touch events)
+            e.preventDefault();
+            
+            // Toggle 'active' class on the header (rotates arrow via CSS)
             this.classList.toggle('active');
             
+            // Find the next element (the entry content with audio/text/buttons)
             const entryContent = this.nextElementSibling;
             
+            // Make sure we found the entry content before toggling
             if (entryContent && entryContent.classList.contains('entry-content')) {
+                // Toggle 'collapsed-entry' class (CSS animates the expand/collapse)
                 entryContent.classList.toggle('collapsed-entry');
             }
-        });
+        };
+        
+        // Desktop: Listen for clicks
+        header.addEventListener('click', toggleEntry);
+        
+        // Mobile: Listen for touch events (when finger lifts off)
+        header.addEventListener('touchend', toggleEntry);
     });
 }
 
