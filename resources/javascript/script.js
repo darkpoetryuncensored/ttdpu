@@ -173,7 +173,7 @@ function createEntryHTML(poetKey, entry) {
     return `
         <div class="content-entry" data-folder="${entry.folder}">
             <div class="entry-header collapsible-entry">
-                <span class="entry-arrow">▶</span>
+                <span class="entry-arrow"></span>
                 <span class="entry-date">${formattedDate}</span>
                 <span class="entry-separator"> - </span>
                 <span class="entry-title">${escapeHtml(entry.title)}</span>
