@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width" name="viewport">
+    <title>DPU TikTok - Content Library</title>
+    <link href="resources/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="title">
+                <span class="title-main">Dark Poetry Uncensored</span>
+                <span class="title-sub">TikTok Content Library</span>
+            </div>
+			<nav class="back-nav">
+                <a href="index.html" class="back-link">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="intro">
+                <p>Completed recordings and poetry texts ready for TikTok production. Download audio files and copy text for video editing.</p>
+            </div>
+
+            <!-- Laura L Glover Section -->
+            <section class="poet-section" id="laura-l-glover">
+				<h2 class="poet-name collapsible">Laura L Glover <span class="arrow">▶</span></h2>
+				<div class="content-list collapsed" data-poet="laura-l-glover">
+					<!-- Content loaded dynamically by JavaScript -->
+					<div class="loading">Loading content...</div>
+				</div>
+			</section>
+
+            <!-- Georgia Gray Section -->
+            <section class="poet-section" id="georgia-gray">
+                <h2 class="poet-name collapsible">Georgia Gray <span class="arrow">▶</span></h2>
+                <div class="content-list collapsed" data-poet="georgia-gray">
+                    <!-- Content loaded dynamically by JavaScript -->
+                    <div class="loading">Loading content...</div>
+                </div>
+            </section>
+
+            <!-- Others Section -->
+            <section class="poet-section" id="others">
+				<h2 class="poet-name collapsible">Others <span class="arrow">▶</span></h2>
+				<div class="content-list collapsed" data-poet="others">
+					<!-- Content loaded dynamically by JavaScript -->
+					<div class="loading">Loading content...</div>
+				</div>
+			</section>
+        </div>
+    </main>
+    
+    <!-- UPLOAD INTERFACE (COMMENTED OUT FOR FUTURE USE) -->
+    <!--
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Upload New Recording</h2>
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="poet-select">Poet</label>
+                    <select id="poet-select" required>
+                        <option value="">Select Poet</option>
+                        <option value="laura-l-glover">Laura L Glover</option>
+                        <option value="georgia-gray">Georgia Gray</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="custom-poet-group" style="display: none;">
+                    <label for="custom-poet">Poet Name</label>
+                    <input type="text" id="custom-poet" placeholder="Enter poet name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="poem-title">Poem Title</label>
+                    <input type="text" id="poem-title" required placeholder="Enter poem title">
+                </div>
+                
+                <div class="form-group">
+                    <label for="audio-file">Audio File</label>
+                    <input type="file" id="audio-file" accept="audio/*" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="text-content">Poem Text</label>
+                    <textarea id="text-content" rows="10" required placeholder="Paste or type the poem text here"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary">Upload</button>
+            </form>
+        </div>
+    </div>
+    
+    <button id="upload-btn" class="floating-upload-btn">+ Upload</button>
+    -->
+    
+    <footer>
+        <p>Dark Poetry Uncensored • TikTok Content Library</p>
+    </footer>
+    
+    <script src="resources/javascript/script.js"></script>
+</body>
+</html>

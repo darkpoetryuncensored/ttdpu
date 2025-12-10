@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width" name="viewport">
+    <title>DPU TikTok - Visuals Gallery</title>
+    <link href="resources/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="title">
+                <span class="title-main">Dark Poetry Uncensored</span>
+                <span class="title-sub">TikTok Visuals Gallery</span>
+            </div>
+            <nav class="back-nav">
+                <a href="index.html" class="back-link">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="intro">
+                <p>Video clips and images ready for TikTok production. Click to preview, download for editing.</p>
+            </div>
+
+            <!-- Visuals Grid -->
+            <section class="visuals-section">
+                <div class="visuals-grid" id="visuals-grid">
+                    <!-- Content loaded dynamically by JavaScript -->
+                    <div class="loading">Loading visuals...</div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <div id="lightbox-media"></div>
+            <div class="lightbox-info">
+                <h3 id="lightbox-description"></h3>
+                <p id="lightbox-attribution"></p>
+                <a id="lightbox-download" href="#" download class="btn btn-download">
+                    <span>⬇</span> Download
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- UPLOAD INTERFACE (COMMENTED OUT FOR FUTURE USE) -->
+    <!--
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Upload Visual Content</h2>
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="content-type">Content Type</label>
+                    <select id="content-type" required>
+                        <option value="">Select Type</option>
+                        <option value="video">Video</option>
+                        <option value="image">Image</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="media-file">Media File</label>
+                    <input type="file" id="media-file" accept="video/*,image/*" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" required placeholder="Short description">
+                </div>
+                
+                <div class="form-group">
+                    <label for="attribution">Attribution</label>
+                    <input type="text" id="attribution" placeholder="Leave blank if submitted by you">
+                </div>
+                
+                <button type="submit" class="btn-primary">Upload</button>
+            </form>
+        </div>
+    </div>
+    
+    <button id="upload-btn" class="floating-upload-btn">+ Upload</button>
+    -->
+    
+    <footer>
+        <p>Dark Poetry Uncensored • TikTok Visuals Gallery</p>
+    </footer>
+    
+    <script src="resources/javascript/script.js"></script>
+</body>
+</html>

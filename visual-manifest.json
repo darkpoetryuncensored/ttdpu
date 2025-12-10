@@ -1,0 +1,16 @@
+{
+  "visuals": [
+    {
+      "filename": "example-video.mp4",
+      "type": "video",
+      "description": "Dark poetry atmospheric background loop",
+      "attribution": "You"
+    },
+    {
+      "filename": "example-image.jpg",
+      "type": "image",
+      "description": "Moody black and white portrait for overlay",
+      "attribution": "You"
+    }
+  ]
+}

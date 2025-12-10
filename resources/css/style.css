@@ -1,0 +1,1003 @@
+/* CSS Reset and Base Styles */
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* Custom Properties - Dark Poetry Theme */
+:root {
+    --color-void: #0a0a0a;
+    --color-blood: #660000;
+    --color-crimson: #dc143c;
+    --color-ash: #1a1a1a;
+    --color-smoke: #2a2a2a;
+    --color-fog: #666;
+    --color-bone: #e8e8e8;
+    --color-ghost: rgba(255, 255, 255, 0.05);
+    --color-purple-light: #7b4dc4;
+    --color-pink: #e91e63;
+    
+    --font-display: 'Georgia', 'Garamond', serif;
+    --font-body: 'Verdana', 'Arial', sans-serif;
+    
+    --shadow-deep: 0 8px 32px rgba(0, 0, 0, 0.8);
+    --shadow-lifted: 0 4px 16px rgba(139, 0, 0, 0.4);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-size: 100%;
+    margin: 0;
+    color: var(--color-bone);
+    font-family: var(--font-body);
+    background: var(--color-void);
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+}
+
+/* ========================================
+   LANDING PAGE STYLES
+   ======================================== */
+
+body.landing-page {
+    padding: 0;
+    overflow: hidden;
+}
+
+.landing-main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-void);
+    background-image: 
+        radial-gradient(circle at 30% 40%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+    position: relative;
+}
+
+.landing-container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.landing-header {
+    margin-bottom: 4rem;
+}
+
+.landing-title {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+}
+
+.title-dark {
+    display: block;
+    color: var(--color-bone);
+    text-shadow: 2px 2px 12px rgba(139, 0, 0, 0.6);
+}
+
+.title-crimson {
+    display: block;
+    color: var(--color-crimson);
+    text-shadow: 2px 2px 12px rgba(220, 20, 60, 0.8);
+}
+
+.landing-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-fog);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0 auto;
+	text-align: center;
+	width: 100%;
+}
+
+/* Rose Buttons Container */
+.rose-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
+    margin-top: 3rem;
+}
+
+.rose-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-decoration: none;
+    transition: var(--transition-slow);
+}
+
+.rose-button:hover {
+    transform: translateY(-8px);
+}
+
+/* Rose SVG Styling */
+.rose-svg {
+    width: 200px;
+    height: 200px;
+    filter: drop-shadow(0 8px 24px rgba(139, 0, 0, 0.6));
+    transition: var(--transition-slow);
+}
+
+.rose-button:hover .rose-svg {
+    filter: drop-shadow(0 12px 32px rgba(139, 0, 0, 0.8));
+}
+
+.rose-petal {
+    fill: var(--color-void);
+    stroke-width: 2;
+    stroke: var(--color-purple-light);
+    transition: var(--transition-slow);
+    animation: rosePulse 6s ease-in-out infinite;
+}
+
+.rose-petal-mid {
+    animation-delay: 0.5s;
+}
+
+.rose-center {
+    fill: var(--color-void);
+    stroke-width: 2;
+    stroke: var(--color-purple-light);
+    animation: rosePulse 6s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+/* Photosensitive-safe rose pulse animation */
+@keyframes rosePulse {
+    0%, 100% {
+        stroke: var(--color-purple-light);
+        stroke-width: 2;
+    }
+    33% {
+        stroke: var(--color-blood);
+        stroke-width: 2.5;
+    }
+    66% {
+        stroke: var(--color-pink);
+        stroke-width: 2.5;
+    }
+}
+
+.rose-button:hover .rose-petal,
+.rose-button:hover .rose-center {
+    animation-duration: 4s;
+}
+
+.rose-label {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--color-bone);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 8px rgba(139, 0, 0, 0.6);
+    transition: var(--transition-smooth);
+}
+
+.rose-button:hover .rose-label {
+    color: var(--color-crimson);
+    text-shadow: 2px 2px 12px rgba(220, 20, 60, 0.8);
+}
+
+/* ========================================
+   POEMS & VISUALS PAGE SHARED STYLES
+   ======================================== */
+
+body:not(.landing-page) {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.05) 0%, transparent 50%);
+}
+
+main {
+    display: block;
+    padding: 3rem 0;
+    min-height: calc(100vh - 160px);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+h2 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.7;
+    margin: 0 0 1rem 0;
+    max-width: 70ch;
+}
+
+/* Container */
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    max-width: 100%;
+}
+
+/* Header */
+header {
+    background: linear-gradient(180deg, var(--color-void) 0%, var(--color-ash) 100%);
+    padding: 1.5rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid var(--color-blood);
+    box-shadow: var(--shadow-deep);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .title {
+    text-align: left;
+}
+
+.title-main {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--color-bone);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+    text-shadow: 2px 2px 8px rgba(139, 0, 0, 0.6);
+}
+
+.title-sub {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    color: var(--color-fog);
+    text-transform: uppercase;
+}
+
+/* Back Navigation */
+.back-nav {
+    font-size: 1rem;
+}
+
+.back-link {
+    color: var(--color-fog);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: var(--transition-smooth);
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+}
+
+.back-link:hover {
+    color: var(--color-crimson);
+    border-color: var(--color-blood);
+}
+
+/* Introduction */
+.intro {
+    text-align: center;
+    margin: 0 auto 4rem;
+    max-width: 60ch;
+}
+
+.intro p {
+    font-size: 1.125rem;
+    color: var(--color-fog);
+    margin: 0 auto;
+}
+
+/* ========================================
+   POEMS PAGE STYLES
+   ======================================== */
+
+.poet-section {
+    margin-bottom: 1.30rem;
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.poet-section:nth-child(1) { animation-delay: 0.1s; }
+.poet-section:nth-child(2) { animation-delay: 0.2s; }
+.poet-section:nth-child(3) { animation-delay: 0.3s; }
+
+.poet-name {
+    color: var(--color-crimson);
+    font-size: 1.225rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-smoke);
+    position: relative;
+}
+
+.poet-name::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: var(--color-blood);
+}
+
+/* Collapsible Section Styles */
+.poet-name.collapsible {
+    cursor: pointer;
+    user-select: none;
+    transition: var(--transition-smooth);
+}
+
+.poet-name.collapsible:hover {
+    color: var(--color-bone);
+}
+
+.poet-name .arrow {
+    display: inline-block;
+    margin-left: 1rem;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.poet-name.collapsible.active .arrow {
+    transform: rotate(90deg);
+}
+
+.content-list.collapsed {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    margin-top: 0;
+}
+
+.content-list:not(.collapsed) {
+    max-height: 10000px;
+    opacity: 1;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+}
+
+/* Content List */
+.content-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.loading {
+    color: var(--color-fog);
+    font-style: italic;
+    padding: 2rem;
+    text-align: center;
+}
+
+.no-content {
+    color: var(--color-fog);
+    font-style: italic;
+    padding: 2rem;
+    text-align: center;
+    background: var(--color-ghost);
+    border: 1px dashed var(--color-smoke);
+    border-radius: 4px;
+}
+
+/* Content Entry (Poems) */
+.content-entry {
+    background: var(--color-ash);
+    border: 1px solid var(--color-smoke);
+    border-left: 3px solid var(--color-blood);
+    padding: 1.5rem;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.content-entry::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-ghost) 0%, transparent 100%);
+    opacity: 0;
+    transition: var(--transition-smooth);
+    pointer-events: none;
+}
+
+.content-entry:hover {
+    border-left-color: var(--color-crimson);
+    box-shadow: var(--shadow-lifted);
+    transform: translateX(4px);
+}
+
+.content-entry:hover::before {
+    opacity: 1;
+}
+
+/* Entry Header */
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.entry-date {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--color-crimson);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.entry-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-bone);
+    flex: 1;
+    min-width: 200px;
+}
+
+.entry-poet {
+    font-size: 0.875rem;
+    color: var(--color-fog);
+    font-style: italic;
+}
+
+/* Entry Content */
+.entry-content {
+    margin-top: 1.25rem;
+}
+
+.audio-player {
+    width: 100%;
+    margin-bottom: 1rem;
+    background: var(--color-smoke);
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.audio-player audio {
+    width: 100%;
+    height: 40px;
+}
+
+/* Text Preview */
+.text-preview {
+    background: var(--color-void);
+    border: 1px solid var(--color-smoke);
+    padding: 1rem;
+    margin: 1rem 0;
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--color-fog);
+    white-space: pre-wrap;
+    border-radius: 4px;
+}
+
+.text-preview::-webkit-scrollbar {
+    width: 8px;
+}
+
+.text-preview::-webkit-scrollbar-track {
+    background: var(--color-void);
+}
+
+.text-preview::-webkit-scrollbar-thumb {
+    background: var(--color-blood);
+    border-radius: 4px;
+}
+
+.text-preview::-webkit-scrollbar-thumb:hover {
+    background: var(--color-crimson);
+}
+
+/* ========================================
+   VISUALS PAGE STYLES
+   ======================================== */
+
+.visuals-section {
+    margin-bottom: 3rem;
+}
+
+.visuals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Visual Card */
+.visual-card {
+    background: var(--color-ash);
+    border: 1px solid var(--color-smoke);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    position: relative;
+}
+
+.visual-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lifted);
+    border-color: var(--color-blood);
+}
+
+.visual-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(139, 0, 0, 0.3) 100%);
+    opacity: 0;
+    transition: var(--transition-smooth);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.visual-card:hover::before {
+    opacity: 1;
+}
+
+/* Visual Thumbnail */
+.visual-thumbnail {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: var(--color-void);
+    position: relative;
+}
+
+.visual-thumbnail img,
+.visual-thumbnail video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.visual-card:hover .visual-thumbnail img,
+.visual-card:hover .visual-thumbnail video {
+    transform: scale(1.05);
+}
+
+.video-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(139, 0, 0, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-bone);
+    font-size: 1.5rem;
+    z-index: 2;
+    transition: var(--transition-smooth);
+}
+
+.visual-card:hover .video-indicator {
+    background: var(--color-crimson);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Visual Info */
+.visual-info {
+    padding: 1.25rem;
+}
+
+.visual-description {
+    font-size: 1rem;
+    color: var(--color-bone);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.visual-attribution {
+    font-size: 0.875rem;
+    color: var(--color-fog);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+/* Visual Actions */
+.visual-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* ========================================
+   LIGHTBOX
+   ======================================== */
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.lightbox.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    color: var(--color-bone);
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    z-index: 2001;
+    line-height: 1;
+}
+
+.lightbox-close:hover {
+    color: var(--color-crimson);
+    transform: scale(1.2);
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    animation: scaleIn 0.3s ease-out;
+}
+
+#lightbox-media {
+    max-width: 100%;
+    max-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#lightbox-media img,
+#lightbox-media video {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border: 2px solid var(--color-blood);
+    box-shadow: var(--shadow-deep);
+}
+
+#lightbox-media video {
+    background: var(--color-void);
+}
+
+.lightbox-info {
+    text-align: center;
+    padding: 1rem;
+    background: var(--color-ash);
+    border: 1px solid var(--color-smoke);
+    border-radius: 4px;
+}
+
+.lightbox-info h3 {
+    color: var(--color-bone);
+    margin-bottom: 0.5rem;
+}
+
+.lightbox-info p {
+    color: var(--color-fog);
+    font-style: italic;
+    margin: 0 auto 1rem;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.entry-actions,
+.visual-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: 0.625rem 1.25rem;
+    border: 1px solid var(--color-smoke);
+    background: var(--color-smoke);
+    color: var(--color-bone);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn:hover {
+    background: var(--color-blood);
+    border-color: var(--color-blood);
+    color: var(--color-bone);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-copy {
+    background: var(--color-void);
+    border-color: var(--color-blood);
+}
+
+.btn-copy:hover {
+    background: var(--color-blood);
+}
+
+.btn-copy.copied {
+    background: var(--color-blood);
+    border-color: var(--color-crimson);
+}
+
+.btn-download {
+    background: var(--color-blood);
+    border-color: var(--color-blood);
+}
+
+.btn-download:hover {
+    background: var(--color-crimson);
+    border-color: var(--color-crimson);
+}
+
+/* Footer */
+footer {
+    background: var(--color-void);
+    color: var(--color-fog);
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-blood);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - TABLET
+   ======================================== */
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .landing-title {
+        font-size: 3rem;
+    }
+    
+    .rose-buttons {
+        gap: 4rem;
+    }
+    
+    .rose-svg {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .title-main {
+        font-size: 1.75rem;
+    }
+    
+    .entry-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .visuals-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE
+   ======================================== */
+
+@media (max-width: 640px) {
+    .landing-title {
+        font-size: 2rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 1rem;
+    }
+    
+    .rose-buttons {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .rose-svg {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .rose-label {
+        font-size: 1.5rem;
+    }
+    
+    body:not(.landing-page) {
+        padding-top: 8rem;
+        padding-bottom: 5rem;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    header {
+        padding: 1rem 0;
+    }
+    
+    header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .title-main {
+        font-size: 1.5rem;
+        letter-spacing: 0.05em;
+    }
+    
+    .title-sub {
+        font-size: 0.75rem;
+    }
+    
+    .intro p {
+        font-size: 1rem;
+    }
+    
+    .poet-name {
+        font-size: 1.5rem;
+    }
+    
+    .entry-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .entry-title {
+        font-size: 1.25rem;
+    }
+    
+    .entry-actions,
+    .visual-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .text-preview {
+        max-height: 150px;
+        font-size: 0.875rem;
+    }
+    
+    .visuals-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .lightbox-close {
+        top: 1rem;
+        right: 1rem;
+        font-size: 2.5rem;
+    }
+    
+    .lightbox-content {
+        max-width: 95%;
+    }
+}
