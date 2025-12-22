@@ -72,7 +72,7 @@ body.landing-page {
 }
 
 .landing-header {
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 }
 
 .landing-title {
@@ -1024,6 +1024,14 @@ footer p {
     
     .landing-subtitle {
         font-size: 1rem;
+    }
+	
+	.landing-header {
+        margin-bottom: 3rem; /* Less space on mobile to fit more on screen */
+    }
+    
+    body:not(.landing-page) {
+        padding-top: 12rem; /* Even more padding on mobile for taller header */
     }
     
     .rose-buttons {
