@@ -48,12 +48,15 @@ body {
 
 body.landing-page {
     padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
     overflow: hidden;
 }
 
 .landing-main {
-    min-height: 100vh;
-	min-height: 100dvh; /* Dynamic viewport - accounts for mobile broswer bars */
+    flex: 1; /* Take remaining space like other main elements */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,7 +65,8 @@ body.landing-page {
         radial-gradient(circle at 30% 40%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 70% 60%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
     position: relative;
-	padding: 2rem 1rem; /*Prevent content from touching edges */
+	padding: 2rem 1rem;
+	overflow-y: auto; /* Allows scrolling if needed */
 }
 
 .landing-container {
@@ -217,7 +221,7 @@ main {
     flex: 1; 
     overflow-y: auto; /* Scrollable content */
     padding: 2rem 0 3rem 0; 
-    margin-top: 10rem; 
+    margin-top: 9rem; 
     margin-bottom: 4rem; 
 }
 
@@ -1051,7 +1055,7 @@ footer p {
     }
     
     main {
-        margin-top: 11rem; /* Slightly more space on mobile */
+        margin-top: 10rem; /* Slightly more space on mobile */
         margin-bottom: 5rem;
     }
     
