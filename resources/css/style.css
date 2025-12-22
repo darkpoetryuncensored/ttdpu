@@ -214,11 +214,11 @@ body:not(.landing-page) {
 
 main {
     display: block;
-    flex: 1; /* Take up remaining space between header and footer */
+    flex: 1; 
     overflow-y: auto; /* Scrollable content */
-    padding: 2rem 0 3rem 0; /* Top padding creates space below header */
-    margin-top: 8rem; /* Push content below fixed header */
-    margin-bottom: 4rem; /* Push content above fixed footer */
+    padding: 2rem 0 3rem 0; 
+    margin-top: 10rem; 
+    margin-bottom: 4rem; 
 }
 
 /* Typography */
@@ -1051,7 +1051,7 @@ footer p {
     }
     
     main {
-        margin-top: 9rem; /* Slightly more space on mobile */
+        margin-top: 11rem; /* Slightly more space on mobile */
         margin-bottom: 5rem;
     }
     
