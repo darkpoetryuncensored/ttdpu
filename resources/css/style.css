@@ -53,6 +53,7 @@ body.landing-page {
 
 .landing-main {
     min-height: 100vh;
+	min-height: 100dvh; /* Dynamic viewport - accounts for mobile broswer bars */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,11 +62,13 @@ body.landing-page {
         radial-gradient(circle at 30% 40%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 70% 60%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
     position: relative;
+	padding: 2rem 1rem; /*Prevent content from touching edges */
 }
 
 .landing-container {
     text-align: center;
-    padding: 2rem;
+    padding: 0; /* Padding handled by .landing-main */
+	width: 100%;
 }
 
 .landing-header {
@@ -290,6 +293,62 @@ header .title {
     letter-spacing: 0.15em;
     color: var(--color-fog);
     text-transform: uppercase;
+}
+
+/* Landing-style header for poems and visuals pages */
+header.landing-style {
+    background: linear-gradient(180deg, var(--color-void) 0%, var(--color-ash) 100%);
+    padding: 2rem 0 1.5rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid var(--color-blood);
+    box-shadow: var(--shadow-deep);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+header.landing-style .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+header.landing-style .landing-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+    text-align: center;
+}
+
+header.landing-style .title-dark {
+    display: block;
+    color: var(--color-bone);
+    text-shadow: 2px 2px 12px rgba(139, 0, 0, 0.6);
+}
+
+header.landing-style .title-crimson {
+    display: block;
+    color: var(--color-crimson);
+    text-shadow: 2px 2px 12px rgba(220, 20, 60, 0.8);
+}
+
+header.landing-style .page-subtitle {
+    font-size: 0.875rem;
+    color: var(--color-fog);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+header.landing-style .back-nav {
+    margin-top: 0.5rem;
 }
 
 /* Back Navigation */

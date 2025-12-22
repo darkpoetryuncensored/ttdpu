@@ -466,6 +466,7 @@ function escapeHtml(text) {
 /**
  * Initialize collapsible sections
  * Makes poet name headers (Laura L Glover, Georgia Gray, etc.) clickable/touchable
+ * Includes scroll detection to prevent accidental triggers while scrolling
  */
 function initializeCollapsible() {
     // Find all poet headers that have the 'collapsible' class
@@ -473,6 +474,11 @@ function initializeCollapsible() {
     
     // Loop through each header and add event listeners
     collapsibleHeaders.forEach(header => {
+        // Variables to track touch movement (detect scroll vs tap)
+        let touchStartY = 0;
+        let touchEndY = 0;
+        const scrollThreshold = 10; // Pixels of movement to consider it a scroll
+        
         // Create a toggle function that both click and touch will use
         // 'this' refers to the element that was clicked/touched
         const toggleSection = function() {
@@ -492,13 +498,24 @@ function initializeCollapsible() {
         // Desktop: Listen for regular clicks
         header.addEventListener('click', toggleSection);
         
-        // Mobile: Listen for touch events
-        // 'touchend' fires when finger lifts off screen
+        // Mobile: Track touch start position
+        header.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true }); // passive = doesn't prevent scrolling
+        
+        // Mobile: Track touch end position and decide if it was a tap or scroll
         header.addEventListener('touchend', function(e) {
-            // Prevent the touch from also triggering a click event (would fire twice)
-            e.preventDefault();
-            // Call our toggle function, making sure 'this' refers to the header
-            toggleSection.call(this);
+            touchEndY = e.changedTouches[0].clientY;
+            
+            // Calculate how far the finger moved
+            const touchDistance = Math.abs(touchEndY - touchStartY);
+            
+            // Only trigger if movement was less than threshold (was a tap, not scroll)
+            if (touchDistance < scrollThreshold) {
+                e.preventDefault(); // Prevent click event from also firing
+                toggleSection.call(this);
+            }
+            // If movement >= threshold, do nothing (user was scrolling)
         });
     });
 }
@@ -508,22 +525,27 @@ function initializeCollapsible() {
  * Makes individual poem headers (date + title) clickable/touchable
  * @param {HTMLElement} container - The content list div to search within
  */
+/**
+ * Initialize collapsible poem entries
+ * Makes individual poem headers (date + title) clickable/touchable
+ * Includes scroll detection to prevent accidental triggers while scrolling
+ * @param {HTMLElement} container - The content list div to search within
+ */
 function initializeEntryCollapsible(container) {
     // Find all poem entry headers within this specific container
-    // Using container.querySelectorAll instead of document ensures we only
-    // get entries from the poet section that just loaded
     const entryHeaders = container.querySelectorAll('.entry-header.collapsible-entry');
     
     // Loop through each poem entry header
     entryHeaders.forEach(header => {
-        // Create a toggle function for both click and touch
-        // The 'e' parameter is the event object (click or touch)
+        // Variables to track touch movement (detect scroll vs tap)
+        let touchStartY = 0;
+        let touchEndY = 0;
+        const scrollThreshold = 10; // Pixels of movement to consider it a scroll
+        
+        // Create a toggle function for click events
         const toggleEntry = function(e) {
             // Stop the event from bubbling up to parent elements
-            // Without this, clicking a poem would also trigger the poet section
             e.stopPropagation();
-            
-            // Prevent default browser behavior (important for touch events)
             e.preventDefault();
             
             // Toggle 'active' class on the header (rotates arrow via CSS)
@@ -542,8 +564,32 @@ function initializeEntryCollapsible(container) {
         // Desktop: Listen for clicks
         header.addEventListener('click', toggleEntry);
         
-        // Mobile: Listen for touch events (when finger lifts off)
-        header.addEventListener('touchend', toggleEntry);
+        // Mobile: Track touch start position
+        header.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true }); // passive = doesn't prevent scrolling
+        
+        // Mobile: Track touch end and decide if tap or scroll
+        header.addEventListener('touchend', function(e) {
+            touchEndY = e.changedTouches[0].clientY;
+            
+            // Calculate how far the finger moved
+            const touchDistance = Math.abs(touchEndY - touchStartY);
+            
+            // Only trigger if movement was less than threshold (was a tap)
+            if (touchDistance < scrollThreshold) {
+                e.stopPropagation(); // Don't trigger parent elements
+                e.preventDefault(); // Prevent click event from also firing
+                
+                // Toggle the entry
+                this.classList.toggle('active');
+                const entryContent = this.nextElementSibling;
+                if (entryContent && entryContent.classList.contains('entry-content')) {
+                    entryContent.classList.toggle('collapsed-entry');
+                }
+            }
+            // If movement >= threshold, do nothing (user was scrolling)
+        });
     });
 }
 
