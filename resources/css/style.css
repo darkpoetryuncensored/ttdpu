@@ -202,7 +202,7 @@ body.landing-page {
    ======================================== */
 
 body:not(.landing-page) {
-    padding-top: 6rem;
+    padding-top: 10rem;
     padding-bottom: 4rem;
     background-image: 
         radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.08) 0%, transparent 50%),
