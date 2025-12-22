@@ -7,6 +7,8 @@
 const POETS = {
     'laura-l-glover': 'Laura L Glover',
     'georgia-gray': 'Georgia Gray',
+	'ashleyn-heffner': 'Ashlyn Heffner',
+	'michael-hansen': 'Micheal Hansen',
     'others': 'Others'
 };
 
