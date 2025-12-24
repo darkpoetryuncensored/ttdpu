@@ -32,41 +32,28 @@ html {
     --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body {
-    font-size: 100%;
-    margin: 0;
-    color: var(--color-bone);
-    font-family: var(--font-body);
-    background: var(--color-void);
-    letter-spacing: 0.02em;
-    line-height: 1.6;
-}
-
 /* ========================================
    LANDING PAGE STYLES
    ======================================== */
 
-body.landing-page {
+body {
+	font-size: 100%;
+    margin: 0;
     padding: 0;
-	margin: 0;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-    overflow: hidden;
+	color: var(--color-bone);
+	font-family: var(--font-body);
+	background: var(--color-void);
+	letter-spacing: 0.02em;
+	line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.landing-main {
-    flex: 1; /* Take remaining space like other main elements */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-void);
+body.content-page {
     background-image: 
-        radial-gradient(circle at 30% 40%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 70% 60%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
-    position: relative;
-	padding: 2rem 1rem;
-	overflow-y: auto; /* Allows scrolling if needed */
+        radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.05) 0%, transparent 50%);
 }
 
 .landing-container {
@@ -205,24 +192,27 @@ body.landing-page {
    POEMS & VISUALS PAGE SHARED STYLES
    ======================================== */
 
-body:not(.landing-page) {
-    padding: 0; /* Remove all padding - use margin on main instead */
-    margin: 0;
+body.content-page {
     background-image: 
         radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.08) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.05) 0%, transparent 50%);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Full viewport height */
 }
 
 main {
-    display: block;
-    flex: 1; 
-    overflow-y: auto; /* Scrollable content */
-    padding: 2rem 0 3rem 0; 
-    margin-top: 9rem; 
-    margin-bottom: 4rem; 
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 11rem; /* Space for fixed header */
+    margin-bottom: 3rem; /* Space for fixed footer */
+    padding: 2rem 0;
+}
+s
+main.landing-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: 
+        radial-gradient(circle at 30% 40%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
 }
 
 /* Typography */
@@ -260,104 +250,60 @@ p {
     max-width: 100%;
 }
 
-/* Header */
+/* Unified fixed header for all pages */
 header {
-    background: linear-gradient(180deg, var(--color-void) 0%, var(--color-ash) 100%);
-    padding: 1.5rem 0;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1000;
+    background: linear-gradient(180deg, var(--color-void) 0%, var(--color-ash) 100%);
     border-bottom: 1px solid var(--color-blood);
     box-shadow: var(--shadow-deep);
-    z-index: 1000;
     backdrop-filter: blur(10px);
+    padding: 1.5rem 0;
 }
 
 header .container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
 }
 
-header .title {
-    text-align: left;
-}
-
-.title-main {
-    display: block;
+/* Header title styling */
+header .landing-title {
     font-family: var(--font-display);
     font-size: 2rem;
     font-weight: 400;
     letter-spacing: 0.08em;
-    color: var(--color-bone);
-    text-transform: uppercase;
-    margin-bottom: 0.25rem;
-    text-shadow: 2px 2px 8px rgba(139, 0, 0, 0.6);
-}
-
-.title-sub {
-    display: block;
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    letter-spacing: 0.15em;
-    color: var(--color-fog);
-    text-transform: uppercase;
-}
-
-/* Landing-style header for poems and visuals pages */
-header.landing-style {
-    background: linear-gradient(180deg, var(--color-void) 0%, var(--color-ash) 100%);
-    padding: 1.5rem 0; /* Reduced from 2rem 0 1.5rem 0 */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    border-bottom: 1px solid var(--color-blood);
-    box-shadow: var(--shadow-deep);
-    z-index: 1000;
-    backdrop-filter: blur(10px);
-}
-
-header.landing-style .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem; /* Reduced from 1rem */
-}
-
-header.landing-style .landing-title {
-    font-family: var(--font-display);
-    font-size: 2rem; /* Reduced from 2.5rem to match landing page better */
-    font-weight: 400;
-    letter-spacing: 0.08em;
     text-transform: uppercase;
     margin: 0;
-    line-height: 1.1; /* Tighter line height */
+    line-height: 1.1;
     text-align: center;
 }
 
-header.landing-style .title-dark {
+header .title-dark {
     display: block;
     color: var(--color-bone);
     text-shadow: 2px 2px 12px rgba(139, 0, 0, 0.6);
 }
 
-header.landing-style .title-crimson {
+header .title-crimson {
     display: block;
     color: var(--color-crimson);
     text-shadow: 2px 2px 12px rgba(220, 20, 60, 0.8);
 }
 
-header.landing-style .page-subtitle {
-    font-size: 0.75rem; /* Reduced from 0.875rem */
+header .page-subtitle {
+    font-size: 0.75rem;
     color: var(--color-fog);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     margin: 0;
 }
 
-header.landing-style .back-nav {
+header .back-nav {
     margin-top: 0.5rem;
 }
 
@@ -936,21 +882,21 @@ header.landing-style .back-nav {
 
 /* Footer */
 footer {
-    background: var(--color-void);
-    color: var(--color-fog);
-    padding: 1.5rem 0;
-    border-top: 1px solid var(--color-blood);
-    text-align: center;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+    background: var(--color-void);
+    color: var(--color-fog);
+    padding: 1rem 0; /* Reduced from 1.5rem (25% smaller) */
+    border-top: 1px solid var(--color-blood);
+    text-align: center;
 }
 
 footer p {
     margin: 0;
-    font-size: 0.875rem;
+    font-size: 0.75rem; /* Reduced from 0.875rem (about 15% smaller text) */
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -1028,103 +974,16 @@ footer p {
    ======================================== */
 
 @media (max-width: 640px) {
-    .landing-title {
-        font-size: 2rem;
-    }
-    
-    .landing-subtitle {
-        font-size: 1rem;
-    }
-	
-	.landing-header {
-        margin-bottom: 3rem; /* Less space on mobile to fit more on screen */
-    }
-    
-    .rose-buttons {
-        flex-direction: column;
-        gap: 3rem;
-    }
-    
-    .rose-svg {
-        width: 140px;
-        height: 140px;
-    }
-    
-    .rose-label {
-        font-size: 1.5rem;
+    header .landing-title {
+        font-size: 1.5rem; /* Smaller on mobile */
     }
     
     main {
-        margin-top: 10rem; /* Slightly more space on mobile */
-        margin-bottom: 5rem;
+        margin-top: 12rem; /* More space on mobile for header */
+        margin-bottom: 4rem;
     }
     
-    .container {
-        padding: 0 1rem;
-    }
-    
-    header {
-        padding: 1rem 0;
-    }
-    
-    header .container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .title-main {
-        font-size: 1.5rem;
-        letter-spacing: 0.05em;
-    }
-    
-    .title-sub {
-        font-size: 0.75rem;
-    }
-    
-    .intro p {
-        font-size: 1rem;
-    }
-    
-    .poet-name {
-        font-size: 1.5rem;
-    }
-    
-    .entry-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .entry-title {
-        font-size: 1.25rem;
-    }
-    
-    .entry-actions,
-    .visual-actions {
-        flex-direction: column;
-    }
-    
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .text-preview {
-        max-height: 150px;
-        font-size: 0.875rem;
-    }
-    
-    .visuals-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .lightbox-close {
-        top: 1rem;
-        right: 1rem;
-        font-size: 2.5rem;
-    }
-    
-    .lightbox-content {
-        max-width: 95%;
+    footer p {
+        font-size: 0.65rem; /* Even smaller text on mobile */
     }
 }
