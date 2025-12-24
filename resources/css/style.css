@@ -37,19 +37,20 @@ html {
    ======================================== */
 
 body {
-	font-size: 100%;
+    font-size: 100%;
     margin: 0;
     padding: 0;
-	color: var(--color-bone);
-	font-family: var(--font-body);
-	background: var(--color-void);
-	letter-spacing: 0.02em;
-	line-height: 1.6;
-    display: flex;
-    flex-direction: column;
+    color: var(--color-bone);
+    font-family: var(--font-body);
+    background: var(--color-void);
+    letter-spacing: 0.02em;
+    line-height: 1.6;
     min-height: 100vh;
+    padding-top: 9rem; /* Space for fixed header */
+    padding-bottom: 3.5rem; /* Space for fixed footer */
 }
 
+/* Background gradients for content pages */
 body.content-page {
     background-image: 
         radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.08) 0%, transparent 50%),
@@ -199,14 +200,12 @@ body.content-page {
 }
 
 main {
-    flex: 1;
-    overflow-y: auto;
-    margin-top: 11rem; /* Space for fixed header */
-    margin-bottom: 3rem; /* Space for fixed footer */
     padding: 2rem 0;
 }
-s
+
+/* Landing page: center the roses */
 main.landing-main {
+    min-height: calc(100vh - 9rem - 3.5rem); /* Full height minus header/footer */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,6 +250,7 @@ p {
 }
 
 /* Unified fixed header for all pages */
+/* Fixed header - always at top */
 header {
     position: fixed;
     top: 0;
@@ -271,7 +271,6 @@ header .container {
     gap: 0.5rem;
 }
 
-/* Header title styling */
 header .landing-title {
     font-family: var(--font-display);
     font-size: 2rem;
@@ -889,14 +888,14 @@ footer {
     z-index: 1000;
     background: var(--color-void);
     color: var(--color-fog);
-    padding: 1rem 0; /* Reduced from 1.5rem (25% smaller) */
+    padding: 1rem 0;
     border-top: 1px solid var(--color-blood);
     text-align: center;
 }
 
 footer p {
     margin: 0;
-    font-size: 0.75rem; /* Reduced from 0.875rem (about 15% smaller text) */
+    font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -974,16 +973,19 @@ footer p {
    ======================================== */
 
 @media (max-width: 640px) {
-    header .landing-title {
-        font-size: 1.5rem; /* Smaller on mobile */
+    body {
+        padding-top: 11rem; /* More space for taller mobile header */
     }
     
-    main {
-        margin-top: 12rem; /* More space on mobile for header */
-        margin-bottom: 4rem;
+    header .landing-title {
+        font-size: 1.5rem;
+    }
+    
+    main.landing-main {
+        min-height: calc(100vh - 11rem - 3.5rem);
     }
     
     footer p {
-        font-size: 0.65rem; /* Even smaller text on mobile */
+        font-size: 0.65rem;
     }
 }
